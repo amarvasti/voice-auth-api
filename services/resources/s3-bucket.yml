@@ -1,0 +1,36 @@
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ${self:custom.uploadBucket}
+      # Set the CORS policy
+      CorsConfiguration:
+        CorsRules:
+          -
+            AllowedOrigins:
+              - '*'
+            AllowedHeaders:
+              - '*'
+            AllowedMethods:
+              - GET
+              - PUT
+              - POST
+              - DELETE
+              - HEAD
+            MaxAge: 3000
+
+# Print out the name of the bucket that is created
+Outputs:
+  VoicePrintBucketArn:
+    Value:
+        Fn::GetAtt:
+        - S3Bucket
+        - Arn
+    Export:
+      Name: ${self:custom.stage}-VoicePrintBucketArn
+
+  VoicePrintBucket:
+    Value:
+      Ref: S3Bucket
+    Export:
+      Name: ${self:custom.stage}-VoicePrintBucket

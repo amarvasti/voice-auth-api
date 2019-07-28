@@ -1,0 +1,46 @@
+Resources:
+  UserProfileTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.userTableName}
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S        
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH        
+      # Set the capacity based on the stage
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+  UserSessionTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.sessionTableName}
+      AttributeDefinitions:
+        - AttributeName: sessionId
+          AttributeType: S        
+      KeySchema:
+        - AttributeName: sessionId
+          KeyType: HASH          
+      # Set the capacity based on the stage
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+
+Outputs:
+  UserProfileTableArn:
+    Value:
+        Fn::GetAtt:
+        - UserProfileTable
+        - Arn
+    Export:
+      Name: ${self:custom.stage}-UserProfileTableArn
+
+  UserSessionTableArn:
+    Value:
+        Fn::GetAtt:
+        - UserSessionTable
+        - Arn
+    Export:
+      Name: ${self:custom.stage}-UserSessionTableArn

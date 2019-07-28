@@ -1,0 +1,25 @@
+{
+  "name": "voiceid-authentication-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amazon-s3-url-signer": "^0.1.0",
+    "serverless-http": "^1.9.1",
+    "serverless-offline": "^5.7.3",
+    "serverless-plugin-existing-s3": "^2.3.3",
+    "serverless-pseudo-parameters": "^2.4.0",
+    "serverless-s3-remover": "^0.6.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.501.0",
+    "serverless-step-functions": "^2.1.0"
+  }
+}
